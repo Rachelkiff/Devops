@@ -53,4 +53,5 @@ pipeline {
         sh "ssh web01 sudo cp -r /home/${SSHUSER}/conduit ${WWWROOT}/conduit"
       }
     }
-  
+  }
+}
