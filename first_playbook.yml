@@ -1,0 +1,12 @@
+---
+- hosts: all
+  become: yes
+
+  tasks:
+    - name: Ping
+      ping:
+
+    - name: Install Python
+      apt:
+        name: nginx
+        state: present
