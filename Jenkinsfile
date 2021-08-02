@@ -42,10 +42,6 @@ pipeline {
       steps {
         dir("${WORKSPACE}/conduit-ui") {
           sh "npm run build"
-        }
-      }
-    }
-    stage('Deploy app to API1') {
       steps {
         sh "ssh web01 rm -rf /home/${SSHUSER}/conduit"
         sh "scp -r ${WORKSPACE}/conduit-ui/dist api1:/home/${SSHUSER}/conduit"
