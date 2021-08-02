@@ -23,6 +23,7 @@ pipeline {
         sh "git pull origin ${BRANCH}"
       }
     }
+    
     stage('Install Front-End Packages') {
       steps {
         dir("${WORKSPACE}/conduit-ui") {
@@ -50,4 +51,5 @@ pipeline {
       }
     }
   }
+}
 }
