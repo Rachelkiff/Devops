@@ -23,7 +23,6 @@ pipeline {
         sh "git pull origin ${BRANCH}"
       }
     }
-    
     stage('Install Front-End Packages') {
       steps {
         dir("${WORKSPACE}/conduit-ui") {
@@ -43,13 +42,16 @@ pipeline {
       steps {
         dir("${WORKSPACE}/conduit-ui") {
           sh "npm run build"
+        }
+      }
+    }
+    stage('Deploy app to API1') {
       steps {
-        sh "ssh web01 rm -rf /home/${SSHUSER}/conduit"
+        sh "ssh api1 rm -rf /home/${SSHUSER}/conduit"
         sh "scp -r ${WORKSPACE}/conduit-ui/dist api1:/home/${SSHUSER}/conduit"
         sh "ssh api1 sudo rm -rf ${WWWROOT}/conduit"
         sh "ssh api1 sudo cp -r /home/${SSHUSER}/conduit ${WWWROOT}/conduit"
       }
     }
   }
-}
 }
