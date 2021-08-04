@@ -49,8 +49,8 @@ pipeline {
       steps {
         sh "ssh api1 rm -rf /home/${SSHUSER}/conduit"
         sh "scp -r ${WORKSPACE}/conduit-ui/dist api1:/home/${SSHUSER}/conduit"
-        sh "ssh api1 sudo rm -rf ${WWWROOT}/conduit"
-        sh "ssh api1 sudo cp -r /home/${SSHUSER}/conduit ${WWWROOT}/conduit"
+        sh "ssh ubuntu@api1 sudo -i rm -rf ${WWWROOT}/conduit"
+        sh "ssh ubuntu@api1 sudo -i cp -r /home/${SSHUSER}/conduit ${WWWROOT}/conduit"
       }
     }
   }
